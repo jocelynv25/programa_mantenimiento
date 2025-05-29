@@ -1,0 +1,5 @@
+AzulRey = "#0E2148"
+AzulMedio = "#163574"
+AzulSucio = "#444F64"
+Rojo = "#F7374F"
+Blanco = "#FFFFFF"
