@@ -1,3 +1,11 @@
-Nombre, Numero de Serie, Campo 1, Campo 2, Campo 3, Campo 4, Campo 5, Campo 6, Campo 7, Campo 8, Ficha técnica, Mantenimiento
-a,a,a,a,a,a,a,a,a,a,NULL,NULL
-a,a,a,a,a,a,a,a,a,a,fichasTecnicas\a_ficha.png,mantenimiento\a_mantenimiento.png
+NOMBRE DE LA MÁQUINA,CÓDIGO,MODELO,FABRICANTE/MARCA,UBICACIÓN,SECCIÓN,DIMENSIONES,PESO,VOLTAJE DE ALIMENTACIÓN,POTENCIA,Ficha técnica,Mantenimiento
+Máquina de corte,MON-01,a,a,a,a,a,a,a,a,fichasTecnicas\Máquina_de_corte_ficha.png,mantenimiento\Máquina_de_corte_mantenimiento.png
+Máquina de montado,COR-01,b,b,b,b,b,b,b,b,fichasTecnicas\Maquina_de_montado_ficha.png,mantenimiento\Maquina_de_montado_mantenimiento.png
+Máquina de montar talones,MONT-01,c,c,c,c,c,c,c,c,fichasTecnicas\Maquina_montar_talones_ficha.png,mantenimiento\Maquina_montar_talones_mantenimiento.png
+Máquina de pespunte,ENSH-01,d,d,d,d,d,d,d,d,fichasTecnicas\Maquina_de_pespunte_ficha.png,mantenimiento\Maquina_de_pespunte_mantenimiento.png
+Compresor de tornillo,HORR-01,e,e,e,e,e,e,e,e,fichasTecnicas\Compresor_de_tornillo_ficha.png,mantenimiento\Compresor_de_tornillo_mantenimiento.png
+Máquina de embarrar plantilla,EMB-01,f,f,f,f,f,f,f,f,fichasTecnicas\Maquina_de_embarrar_plantilla_ficha.png,mantenimiento\Maquina_de_embarrar_plantilla_mantenimiento.png
+Máquina horno de secado,COMT-01,g,g,g,g,g,g,g,g,fichasTecnicas\Horno_de_secado_ficha.png,mantenimiento\Horno_de_secado_mantenimiento.png
+Máquina de ensuelar cordón,PES-01,h,h,h,h,h,h,h,h,fichasTecnicas\Maquina_ensuelar_el_cordon_ficha.png,mantenimiento\Maquina_ensuelar_el_cordon_mantenimiento.png
+Máquina horno de rodillos,HOR-01,i,i,i,i,i,i,i,i,fichasTecnicas\Horno_de_rodillos_ficha.png,mantenimiento\Horno_de_rodillos_mantenimiento.png
+Máquina de ensuelar hidráulica,ENSC-01,h,h,h,h,h,h,h,h,fichasTecnicas\Maquina_ensuelar_hidraulica_ficha.png,mantenimiento\Maquina_ensuelar_hidraulica_mantenimiento.png
