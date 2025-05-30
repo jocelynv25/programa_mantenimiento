@@ -4,8 +4,6 @@ import colores
 import tkinter as tk
 from tkinter import messagebox
 
-import cv2
-
 def showRegistro():
     menuScreen.destroy()
     subprocess.Popen(['python', 'Registro.py'])

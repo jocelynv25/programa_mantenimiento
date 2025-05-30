@@ -1,8 +1,5 @@
-import os, cv2
 from tkinter import messagebox
 import subprocess
-import firebase_admin
-from firebase_admin import credentials , db
 
 import colores
 import csv
@@ -206,4 +203,3 @@ botonVolver.grid(row=13, column=0, columnspan=4, padx=1, pady=1)
 
 # Iniciar la aplicación
 RegistroVentana.mainloop()
-#cv2.destroyAllWindows()

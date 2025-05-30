@@ -1,4 +1,3 @@
-import os, cv2
 from tkinter import messagebox
 import subprocess
 import tkinter as tk
@@ -7,9 +6,6 @@ import colores
 def btnBuscar():
     nombre = entryNombre.get()
     codigo = entryCodigo.get()
-    print("BUSCADOR")
-    print(f"nombre: {nombre}")
-    print(f"codigo: {codigo}")
 
     if nombre.strip() == '' and codigo.strip() == '':
         messagebox.showerror("Error", "Inserte el nombre de la máquina o el código para hacer la búsqueda.")
@@ -68,4 +64,3 @@ volverbt.grid(row=3, column=0, columnspan=1, padx=1, pady=1)
 
 # Iniciar la aplicación
 Ventana.mainloop()
-#cv2.destroyAllWindows()

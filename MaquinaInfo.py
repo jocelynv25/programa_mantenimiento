@@ -1,8 +1,5 @@
-import os, cv2
 from tkinter import messagebox
 import subprocess
-import firebase_admin
-from firebase_admin import credentials , db
 
 import colores
 import sys
@@ -11,6 +8,7 @@ import shutil
 from tkinter import filedialog
 from PIL import Image, ImageTk
 import unicodedata
+import platform
 
 import tkinter as tk
 
@@ -34,8 +32,6 @@ def cargar_info_maquina(nombre, codigo):
         next(reader)  # Saltar encabezados
 
         for fila in reader:
-            print(f"fila[0]: {fila[0]}")
-            print(f"fila[1]: {fila[1]}")
             if normalizar(fila[0]) == normalizar(nombre) or normalizar(fila[1]) == normalizar(codigo):
                 entryNombre.insert(0, fila[0])
                 entryCodigo.insert(0, fila[1])
@@ -64,8 +60,16 @@ def cargar_info_maquina(nombre, codigo):
                 return
         messagebox.showwarning("Error", "Máquina no encontrada.")
 
-def ver_imagen(ruta, tipo):
-    subprocess.Popen(["python", "VerImagen.py", ruta, tipo])
+def abrir_archivo(ruta):
+    if not ruta or ruta == "NULL":
+        messagebox.showwarning("Advertencia", "No hay archivo para mostrar.")
+        return
+    if platform.system() == "Windows":
+        os.startfile(ruta)
+    elif platform.system() == "Darwin":
+        subprocess.call(("open", ruta))
+    else:
+        subprocess.call(("xdg-open", ruta))
 
 #Normalizar para buscar sin importar mayusculas ni acentos
 def normalizar(texto):
@@ -166,10 +170,10 @@ entryPotencia.grid(row=9, column=3, padx=10, pady=5)
 cargar_info_maquina(nombre, codigo)
 
 # Botón para procesar los datos
-btnFicha = tk.Button(ventana, text="Ver ficha técnica", command=lambda: ver_imagen(ruta=ruta_ficha, tipo="Ficha técnica"), bg=colores.AzulMedio, fg="white",width=20, font=("Seoge UI", 10, 'bold'))
+btnFicha = tk.Button(ventana, text="Ver ficha técnica", command=lambda: abrir_archivo(ruta=ruta_ficha), bg=colores.AzulMedio, fg="white",width=20, font=("Seoge UI", 10, 'bold'))
 btnFicha.grid(row=10, column=0, columnspan=2, padx=10, pady=10)
 
-btnMantenimiento = tk.Button(ventana, text="Ver mantenimiento", command=lambda: ver_imagen(ruta=ruta_mantenimiento, tipo="Tabla de mantenimiento"), bg=colores.AzulMedio, fg="white",width=20, font=("Seoge UI", 10, 'bold'))
+btnMantenimiento = tk.Button(ventana, text="Ver mantenimiento", command=lambda: abrir_archivo(ruta=ruta_mantenimiento), bg=colores.AzulMedio, fg="white",width=20, font=("Seoge UI", 10, 'bold'))
 btnMantenimiento.grid(row=10, column=2, columnspan=2, padx=10, pady=10)
 
 botonBuscador = tk.Button(ventana, text="Volver al buscador",bg=colores.AzulSucio, fg="white",width=14, font=("Seoge UI", 10), command=volverBuscador)
@@ -181,4 +185,3 @@ botonVolver.grid(row=13, column=2,  padx=5, pady=5)
 
 # Iniciar la aplicación
 ventana.mainloop()
-#cv2.destroyAllWindows()

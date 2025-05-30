@@ -1,4 +1,4 @@
-import os, cv2
+import os
 from tkinter import messagebox
 import subprocess
 import tkinter as tk
@@ -13,6 +13,9 @@ import tempfile
 import pythoncom
 import win32com.client as win32
 from tkinter import messagebox
+
+from pathlib import Path
+import gc
 
 def btnGenerar():
     campos = [
@@ -48,17 +51,23 @@ def btnGenerar():
         wb.close()
 
         # Convertir a PDF usando Excel (solo Windows)
-        pythoncom.CoInitialize()  # Requerido si usas en hilo
+        pythoncom.CoInitialize()
         excel = win32.gencache.EnsureDispatch('Excel.Application')
         wb_pdf = excel.Workbooks.Open(temp_excel)
-        temp_pdf = os.path.join(tempfile.gettempdir(), f"orden_generada_{campos[4]}.pdf")
-        wb_pdf.ExportAsFixedFormat(0, temp_pdf)  # 0 = PDF
+
+        # Guardar en la carpeta Descargas del usuario
+        carpeta_descargas = Path.home() / "Downloads"
+        ruta_pdf = carpeta_descargas / f"orden_generada_{campos[4]}.pdf"
+        wb_pdf.ExportAsFixedFormat(0, str(ruta_pdf))  # 0 = PD
+
+        # Cerrar y limpiar
         wb_pdf.Close(False)
         excel.Quit()
         del excel
+        gc.collect()
 
         # Abrir el PDF
-        os.startfile(temp_pdf)
+        os.startfile(str(ruta_pdf))
 
     except Exception as e:
         messagebox.showerror("Error", f"Ocurrió un error al generar el PDF:\n{e}")
@@ -83,8 +92,6 @@ def cargar_info_maquina(nombre):
         next(reader)  # Saltar encabezados
 
         for fila in reader:
-            print(f"fila[0]: {fila[0]}")
-            print(f"fila[1]: {fila[1]}")
             if normalizar(fila[0]) == normalizar(nombre):
                 entryNombre.insert(0, fila[0])
                 entryCodigo.insert(0, fila[1])
@@ -106,7 +113,7 @@ maquinaSelected= sys.argv[1]
 
 # Crear ventana
 Ventana = tk.Tk()
-Ventana.title("Generar reporte")
+Ventana.title("Generar orden de trabajo")
 
 # Obtener dimensiones de la pantalla
 screen_width = Ventana.winfo_screenwidth()
@@ -122,7 +129,7 @@ Ventana.geometry(f"{window_width}x{window_height}+{x}+{y}")
 Ventana.protocol("WM_DELETE_WINDOW", on_closing)
 Ventana.resizable(False, False)
 
-labTitulo = tk.Label(Ventana, text="Generar reporte", font=("Segoe UI", 14, 'bold'))
+labTitulo = tk.Label(Ventana, text="Generar orden de trabajo", font=("Segoe UI", 14, 'bold'))
 #labTitulo.grid(column=1,row=1, padx=5, pady=5)
 labTitulo.grid(column=0,row=1, columnspan=2, padx=2, pady=5)
 
@@ -175,4 +182,3 @@ btnMenu.grid(row=10, column=1,  padx=10, pady=5)
 
 # Iniciar la aplicación
 Ventana.mainloop()
-#cv2.destroyAllWindows()

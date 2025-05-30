@@ -111,4 +111,3 @@ volverbt.grid(row=6, column=0, columnspan=1, padx=1, pady=1)
 
 # Iniciar la aplicación
 Ventana.mainloop()
-#cv2.destroyAllWindows()

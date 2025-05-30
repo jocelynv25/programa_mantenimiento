@@ -24,7 +24,6 @@ ventana.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
 # Función para abrir imagen
 def abrir_archivo(ruta):
-    print("Abrir archivo.")
     if not ruta or ruta == "NULL":
         messagebox.showwarning("Advertencia", "No hay archivo para mostrar.")
         return
@@ -64,11 +63,9 @@ with open("bd_maquinas.csv", newline='', encoding="utf-8") as f:
 
 # Función para manejar clicks
 def click_en_tabla(event):
-    print("Se hizo clic en tabla")
     item = tabla.identify_row(event.y)
     col = tabla.identify_column(event.x)
     if not item or not col:
-        print("Not item or not col")
         return
 
     index_col = int(col.replace('#', '')) - 1
@@ -114,5 +111,3 @@ boton_volver.grid(row=1, column=0, pady=10)
 tabla.bind("<Button-1>", click_en_tabla)
 
 ventana.mainloop()
-
-print("VENTANA MAINLOOP")
